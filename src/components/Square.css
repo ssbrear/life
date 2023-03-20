@@ -1,0 +1,13 @@
+.Square {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #121212;
+    cursor: pointer;
+    background-color: green;
+}
+.Square.dead {
+    background-color: #343434;
+}
+.Square:hover {
+    filter: brightness(2);
+}

@@ -1,0 +1,18 @@
+.Board {
+    background-color: #121212;
+    width: fit-content;
+    padding: 9px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+.Controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+.Controls button {
+    font-size: 20px;
+    padding: 5px 20px;
+}
