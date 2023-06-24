@@ -1,9 +1,7 @@
 import './Square.css';
-import { useState } from 'react';
-export default function Square() {
-    const [alive, setAlive] = useState(false);
+export default function Square({ alive, changeAlive, index }) {
     return (
-        <div className={alive ? 'Square' : 'Square dead'} onClick={e => setAlive(!alive)}>
+        <div className={alive ? 'Square' : 'Square dead'} onClick={e => changeAlive(index)}>
         </div>
     );
 }
