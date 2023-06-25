@@ -7,6 +7,7 @@ export default function Board() {
         boardWidth: 20,
         boardHeight: 20,
         active: false,
+        speed: 50,
     });
 
     const reset = () => {
@@ -32,6 +33,13 @@ export default function Board() {
         setState({
             ...state,
             active: !state.active
+        })
+    }
+
+    const changeSpeed = (e) => {
+        setState({
+            ...state,
+            speed: parseFloat(e.target.value) * 1000,
         })
     }
 
@@ -92,7 +100,7 @@ export default function Board() {
                 ...state,
                 aliveArray: arr,
             })
-        }, 50);
+        }, state.speed);
         return () => clearInterval(interval);
     }, [state]);
 
@@ -102,12 +110,17 @@ export default function Board() {
     }
     return (
         <div className="App">
+            <h1>Conway's Game of Life</h1>
             <div onDragStart={e => e.preventDefault()} className="Board" style={{ width: 20 * state.boardWidth + 18 }}>
                 {squareArray}
             </div>
             <div className="Controls">
                 <button onClick={() => toggleActive()}>{state.active ? 'STOP' : 'START'}</button>
                 <button onClick={() => reset()}>RESET</button>
+                <div className='Slider-Container'>
+                    <span>{state.speed / 1000}s per tick</span>
+                    <input type="range" min="0.01" max="1" step="0.01" defaultValue="0.05" onChange={e => changeSpeed(e)}></input>
+                </div>
             </div>
         </div>
     );

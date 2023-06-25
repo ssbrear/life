@@ -1,3 +1,13 @@
+.App {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 5em auto 0;
+    max-width: 800px;
+    width: 100%;
+    gap: 20px;
+}
 .Board {
     background-color: #121212;
     width: fit-content;
@@ -9,10 +19,24 @@
 .Controls {
     display: flex;
     justify-content: center;
-    gap: 10px;
-    margin-top: 20px;
+    gap: 20px 10px;
+    flex-wrap: wrap;
+    max-width: 400px;
 }
 .Controls button {
     font-size: 20px;
     padding: 5px 20px;
+}
+.Slider-Container {
+    flex: 0 0 100%;
+    color: white;
+}
+.Slider-Container input {
+    width: 100%;
+}
+h1 {
+    color: white;
+    text-align: center;
+    font-family: Life Savers;
+    margin: 0;
 }
