@@ -4,8 +4,8 @@ import { useState, useEffect } from 'react';
 export default function Board() {
     const [state, setState] = useState({
         aliveArray: new Array(40 * 40).fill(false),
-        boardWidth: 40,
-        boardHeight: 40,
+        boardWidth: 20,
+        boardHeight: 20,
         active: false,
     });
 
@@ -19,19 +19,19 @@ export default function Board() {
         })
     }
 
-    const changeAlive = (index) => {
+    const changeAlive = (index, alive) => {
         const arr = [...state.aliveArray];
-        arr[index] = true;
+        arr[index] = alive;
         setState({
             ...state,
             aliveArray: arr,
         })
     }
 
-    const setActive = () => {
+    const toggleActive = () => {
         setState({
             ...state,
-            active: true
+            active: !state.active
         })
     }
 
@@ -98,16 +98,16 @@ export default function Board() {
 
     let squareArray = [];
     for (let i = 0; i < state.boardHeight * state.boardWidth; i++) {
-        squareArray.push(<Square changeAlive={changeAlive} alive={state.aliveArray[i]} index={i} key={i} />)
+        squareArray.push(<Square active={state.active} changeAlive={changeAlive} alive={state.aliveArray[i]} index={i} key={i} />)
     }
     return (
         <div className="App">
-            <div className="Board" style={{ width: 20 * state.boardWidth + 18 }}>
+            <div onDragStart={e => e.preventDefault()} className="Board" style={{ width: 20 * state.boardWidth + 18 }}>
                 {squareArray}
             </div>
             <div className="Controls">
-                <button onClick={() => setActive()}>Start</button>
-                <button onClick={() => reset()}>Reset</button>
+                <button onClick={() => toggleActive()}>{state.active ? 'STOP' : 'START'}</button>
+                <button onClick={() => reset()}>RESET</button>
             </div>
         </div>
     );
